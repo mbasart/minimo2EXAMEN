@@ -332,8 +332,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
 
             final SharedPreferences sharedPref =
                     PreferenceManager. getDefaultSharedPreferences (LoginActivity. this );
@@ -342,6 +340,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             editor.putString( "username" , this . mEmail );
             editor.putString( "password" , this . mPassword );
             editor.apply();
+
+            mAuthTask = null;
+            showProgress(false);
 
             if (success) {
                 Intent i = new Intent(LoginActivity.this,MainActivity.class);

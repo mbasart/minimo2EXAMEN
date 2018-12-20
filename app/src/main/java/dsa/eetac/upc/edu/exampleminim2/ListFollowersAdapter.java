@@ -1,7 +1,6 @@
 package dsa.eetac.upc.edu.exampleminim2;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +14,16 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import dsa.eetac.upc.edu.exampleminim2.models.Follower;
-import dsa.eetac.upc.edu.exampleminim2.models.User;
+import dsa.eetac.upc.edu.exampleminim2.models.Element;
 
 public class ListFollowersAdapter extends RecyclerView.Adapter<ListFollowersAdapter.ViewHolder> {
 
-    private List<User> dataset;
+    private List<Element> dataset3;
     private Context context;
 
     public ListFollowersAdapter(Context context) {
         this.context = context;
-        this.dataset = new ArrayList<>();
+        this.dataset3 = new ArrayList<>();
     }
 
     @Override
@@ -36,18 +34,19 @@ public class ListFollowersAdapter extends RecyclerView.Adapter<ListFollowersAdap
 
     @Override
     public void onBindViewHolder( ListFollowersAdapter.ViewHolder holder, int position) {
-        User user = dataset.get(position);
-        holder.loginFollowerTextView.setText(user.getLogin());
-        Picasso.with(context).load(user.getAvatar_url()).into(holder.fotoFollowerImageView);
+        Element element = dataset3.get(position);
+        holder.loginFollowerTextView.setText(element.getMunicipiNom());
+        holder.ineFollowerTextView.setText(element.getIne());
+        Picasso.with(context).load(element.getMunicipiEscut()).into(holder.fotoFollowerImageView);
     }
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return dataset3.size();
     }
 
-    public void addFollowers(List<User> listFollowers) {
-        dataset.addAll(listFollowers);
+    public void addCities(List<Element> listElement){
+        dataset3.addAll(listElement);
         notifyDataSetChanged();
     }
 
@@ -57,6 +56,7 @@ public class ListFollowersAdapter extends RecyclerView.Adapter<ListFollowersAdap
         private LinearLayout linearLayout;
         private ImageView fotoFollowerImageView;
         private TextView loginFollowerTextView;
+        private TextView ineFollowerTextView;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -64,6 +64,7 @@ public class ListFollowersAdapter extends RecyclerView.Adapter<ListFollowersAdap
             linearLayout = itemView.findViewById(R.id.linearLayout);
             fotoFollowerImageView = itemView.findViewById(R.id.fotoImageView);
             loginFollowerTextView =  itemView.findViewById(R.id.textView_login);
+            ineFollowerTextView =  itemView.findViewById(R.id.textView_ine);
         }
     }
 }

@@ -14,19 +14,15 @@ import retrofit2.http.Path;
 
 public interface gitApiService {
 
-
-    @GET("{user}")
-    Call<User> obtenerInfoUser(@Path("user") String user);
-
-    @GET("{user}/followers")
-    Call<List<User>> obtenerListaFollowers(@Path("user") String user);
+    @GET()
+    Call<Cities> obtenerCities(@Path("cities") String number, String number2);
 
     static gitApiService createAPIRest() {
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
 
-        String BASE_URL = "https://api.github.com/users/";
+        String BASE_URL = "https://do.diba.cat/api/dataset/municipis/format/json/pag-ini/1/pag-fi/11/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))

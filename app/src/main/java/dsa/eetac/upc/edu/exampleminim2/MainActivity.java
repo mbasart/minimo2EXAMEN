@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getCities(){
 
-        Call<Cities> citiesCall = apirest.obtenerCities("1","11");
+        Call<Cities> citiesCall = apirest.obtenerCities(1,11);
 
         citiesCall.enqueue(new Callback<Cities>() {
             @Override
